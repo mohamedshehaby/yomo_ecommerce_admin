@@ -1,0 +1,3 @@
+class EmptyCacheException implements Exception {}
+
+
