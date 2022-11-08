@@ -11,7 +11,7 @@ class ColorManager {
   static const Color grey2 = Color(0xff797979);
   static const Color grey3 = Color(0xff888888);
   static const Color lightGrey = Color(0xFF9E9E9E);
+  static const Color arapawa20 = Color(0x33304654);
 
   static const Color error = Color(0xffe61f34);
 }
-
