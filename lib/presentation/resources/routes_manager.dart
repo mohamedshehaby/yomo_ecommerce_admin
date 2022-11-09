@@ -9,6 +9,7 @@ import 'package:yomo_ecommerce/presentation/views/splash/splash_view.dart';
 
 import '../../app/dependency_injection.dart';
 import '../blocs/category/category_bloc.dart';
+import '../products/products_bloc.dart';
 
 class Routes {
   static const String splashRoute = '/splash';
@@ -29,7 +30,14 @@ class RoutesGenerator {
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.productsRoute:
-        return MaterialPageRoute(builder: (_) => const ProductsView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => ProductsBloc(repository: instance())
+                    ..add(ProductStarted(categoryName: settings.arguments as String)),
+                  child: ProductsView(
+                    categoryName: settings.arguments as String,
+                  ),
+                ));
       case Routes.categoriesRoute:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<CategoryBloc>(

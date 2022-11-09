@@ -9,3 +9,6 @@ Home View
 
 Categories View
 ![](assets/images/screen_shots/categories.png)
+
+Products View
+![](assets/images/screen_shots/products_view.png)

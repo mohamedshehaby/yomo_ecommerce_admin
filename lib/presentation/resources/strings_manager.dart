@@ -62,5 +62,5 @@ class AppStrings {
   static const noInternetMessage = 'Check your internet connection and try again';
   static const tryAgain = 'Try Again';
   static const whatDoYouWantToBuy = 'What do you want to buy today';
-  static const categories = 'categories';
+  static const categories = 'Categories';
 }
