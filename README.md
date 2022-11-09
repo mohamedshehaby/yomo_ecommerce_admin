@@ -1,9 +1,11 @@
 # yomo_ecommerce_admin
 
-A new Flutter project.
+Admin Dashboard for Ecommerce app
 
 ## Views
 
 Home View
 ![](assets/images/screen_shots/home.png)
 
+Categories View
+![](assets/images/screen_shots/categories.png)

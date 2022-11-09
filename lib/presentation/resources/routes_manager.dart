@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yomo_ecommerce/presentation/resources/strings_manager.dart';
 import 'package:yomo_ecommerce/presentation/views/categories/categories_view.dart';
 import 'package:yomo_ecommerce/presentation/views/home/home_view.dart';
 import 'package:yomo_ecommerce/presentation/views/orders/orders_view.dart';
 import 'package:yomo_ecommerce/presentation/views/products/products_view.dart';
 import 'package:yomo_ecommerce/presentation/views/splash/splash_view.dart';
+
+import '../../app/dependency_injection.dart';
+import '../blocs/category/category_bloc.dart';
 
 class Routes {
   static const String splashRoute = '/splash';
@@ -27,7 +31,13 @@ class RoutesGenerator {
       case Routes.productsRoute:
         return MaterialPageRoute(builder: (_) => const ProductsView());
       case Routes.categoriesRoute:
-        return MaterialPageRoute(builder: (_) => const CategoriesView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider<CategoryBloc>(
+                  child: const CategoriesView(),
+                  create: (BuildContext context) {
+                    return CategoryBloc(repository: instance())..add(CategoryStarted());
+                  },
+                ));
       case Routes.ordersRoute:
         return MaterialPageRoute(builder: (_) => const OrdersView());
       default:
