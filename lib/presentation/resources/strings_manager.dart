@@ -63,4 +63,7 @@ class AppStrings {
   static const tryAgain = 'Try Again';
   static const whatDoYouWantToBuy = 'What do you want to buy today';
   static const categories = 'Categories';
+  static const addProduct = 'Add Product';
+
+  static const addCategory = 'Add Category';
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yomo_ecommerce/presentation/resources/strings_manager.dart';
+import 'package:yomo_ecommerce/presentation/views/add_category/add_category.dart';
+import 'package:yomo_ecommerce/presentation/views/add_product/add_product.dart';
 import 'package:yomo_ecommerce/presentation/views/categories/categories_view.dart';
 import 'package:yomo_ecommerce/presentation/views/home/home_view.dart';
 import 'package:yomo_ecommerce/presentation/views/orders/orders_view.dart';
@@ -16,9 +18,10 @@ class Routes {
   static const String loginRoute = '/login';
   static const String signupRoute = '/signup';
   static const String homeRoute = '/home';
-
   static const String productsRoute = '/products';
   static const String categoriesRoute = '/categories';
+  static const String addProductRoute = '/add-product';
+  static const String addCategoryRoute = '/add-category';
   static const String ordersRoute = '/orders';
 }
 
@@ -46,6 +49,10 @@ class RoutesGenerator {
                     return CategoryBloc(repository: instance())..add(CategoryStarted());
                   },
                 ));
+      case Routes.addCategoryRoute:
+        return MaterialPageRoute(builder: (_) => const AddCategoryView());
+      case Routes.addProductRoute:
+        return MaterialPageRoute(builder: (_) => const AddProductView());
       case Routes.ordersRoute:
         return MaterialPageRoute(builder: (_) => const OrdersView());
       default:

@@ -12,12 +12,15 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(),
-      body: Column(
-        children: [
-          _buildSectionCard(context, AppStrings.categories, _goToCategoriesView),
-          _buildSectionCard(context, AppStrings.products, _goToProductsView),
-          _buildSectionCard(context, AppStrings.orders, _goToOrdersView)
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildSectionCard(context, AppStrings.categories, _goToCategoriesView),
+            _buildSectionCard(context, AppStrings.addCategory, _goToAddCategoryView),
+            _buildSectionCard(context, AppStrings.addProduct, _goToAddProductView),
+            _buildSectionCard(context, AppStrings.orders, _goToOrdersView)
+          ],
+        ),
       ),
     );
   }
@@ -49,7 +52,11 @@ class HomeView extends StatelessWidget {
     Navigator.of(context).pushNamed(Routes.categoriesRoute);
   }
 
-  _goToProductsView(BuildContext context) {
+  _goToAddProductView(BuildContext context) {
+    Navigator.of(context).pushNamed(Routes.productsRoute);
+  }
+
+  _goToAddCategoryView(BuildContext context) {
     Navigator.of(context).pushNamed(Routes.productsRoute);
   }
 
