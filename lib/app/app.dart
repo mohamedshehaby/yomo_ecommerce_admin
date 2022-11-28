@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yomo_ecommerce/app/dependency_injection.dart';
+import 'package:yomo_ecommerce/presentation/blocs/auth/auth_bloc.dart';
+import 'package:yomo_ecommerce/presentation/blocs/manage_category/bloc/manage_category_bloc.dart';
 import 'package:yomo_ecommerce/presentation/resources/routes_manager.dart';
 import 'package:yomo_ecommerce/presentation/resources/theme_manager.dart';
 
@@ -15,11 +19,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: Routes.splashRoute,
-      onGenerateRoute: RoutesGenerator.getRoute,
-      theme: getAppTheme(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              AuthBloc(repository: instance())..add(AuthStarted()),
+        ),
+        BlocProvider(
+            create: (context) => ManageCategoryBloc(repository: instance()))
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: Routes.splashRoute,
+        onGenerateRoute: RoutesGenerator.getRoute,
+        theme: getAppTheme(),
+      ),
     );
   }
 }

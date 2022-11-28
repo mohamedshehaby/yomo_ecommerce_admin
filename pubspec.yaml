@@ -12,18 +12,19 @@ dependencies:
   bloc: ^8.1.0
   cached_network_image: ^3.2.2
   cloud_firestore: ^4.0.4
-  firebase_storage: ^11.0.4
   cupertino_icons: ^1.0.5
   dartz: ^0.10.1
   equatable: ^2.0.5
   firebase_auth: ^4.1.1
   firebase_core: ^2.1.1
-  flutter_svg: ^1.1.6
+  firebase_storage: ^11.0.4
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  flutter_svg: ^1.1.6
   formz: ^0.4.1
   get_it: ^7.2.0
+  image_picker: ^0.8.6
   internet_connection_checker: ^1.0.0+1
   intl: ^0.17.0
   lottie: ^1.4.3
@@ -31,11 +32,10 @@ dependencies:
   uuid: ^3.0.6
 
 dev_dependencies:
-
   flutter_lints: ^2.0.1
-  logger: ^1.1.0
   flutter_test:
     sdk: flutter
+  logger: ^1.1.0
 
 flutter:
 

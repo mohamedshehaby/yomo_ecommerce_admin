@@ -15,9 +15,12 @@ class HomeView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildSectionCard(context, AppStrings.categories, _goToCategoriesView),
-            _buildSectionCard(context, AppStrings.addCategory, _goToAddCategoryView),
-            _buildSectionCard(context, AppStrings.addProduct, _goToAddProductView),
+            _buildSectionCard(
+                context, AppStrings.categories, _goToCategoriesView),
+            _buildSectionCard(
+                context, AppStrings.addCategory, _goToAddCategoryView),
+            _buildSectionCard(
+                context, AppStrings.addProduct, _goToAddProductView),
             _buildSectionCard(context, AppStrings.orders, _goToOrdersView)
           ],
         ),
@@ -25,7 +28,8 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionCard(BuildContext context, String title, Function navFun) {
+  Widget _buildSectionCard(
+      BuildContext context, String title, Function navFun) {
     return SizedBox(
       height: MediaQuery.of(context).size.height / AppSize.s4,
       width: double.infinity,
@@ -48,16 +52,16 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  _goToCategoriesView(BuildContext context) {
-    Navigator.of(context).pushNamed(Routes.categoriesRoute);
+  _goToAddCategoryView(BuildContext context) {
+    Navigator.of(context).pushNamed(Routes.addCategoryRoute);
   }
 
   _goToAddProductView(BuildContext context) {
-    Navigator.of(context).pushNamed(Routes.productsRoute);
+    Navigator.of(context).pushNamed(Routes.addProductRoute);
   }
 
-  _goToAddCategoryView(BuildContext context) {
-    Navigator.of(context).pushNamed(Routes.productsRoute);
+  _goToCategoriesView(BuildContext context) {
+    Navigator.of(context).pushNamed(Routes.categoriesRoute);
   }
 
   _goToOrdersView(BuildContext context) {

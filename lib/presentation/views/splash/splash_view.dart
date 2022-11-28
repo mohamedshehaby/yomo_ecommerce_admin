@@ -33,7 +33,8 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
     _timer = Timer(
       const Duration(seconds: 1),
-      () => Navigator.of(context).pushNamedAndRemoveUntil(Routes.homeRoute, (_) => false),
+      () => Navigator.of(context)
+          .pushNamedAndRemoveUntil(Routes.loginRoute, (_) => false),
     );
   }
 }

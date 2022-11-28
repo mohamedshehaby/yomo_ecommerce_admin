@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yomo_ecommerce/app/app_preferences.dart';
+import 'package:yomo_ecommerce/data/data_source/local_data_source.dart';
 import 'package:yomo_ecommerce/data/data_source/remote_data_source.dart';
 import 'package:yomo_ecommerce/data/network/network_info.dart';
 import 'package:yomo_ecommerce/data/repository_impl/repository_impl.dart';
@@ -14,16 +16,27 @@ Future<void> initAppModule() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   instance.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 
-// Remote Data Source instance
-  instance.registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl());
+  // App Preferences instance
+  instance.registerLazySingleton<AppPreferences>(
+    () => AppPreferencesImpl(prefs: instance<SharedPreferences>()),
+  );
 
+// Remote Data Source instance
+  instance
+      .registerLazySingleton<RemoteDataSource>(() => RemoteDataSourceImpl());
+
+// Remote Data Source instance
+  instance.registerLazySingleton<LocalDataSource>(
+      () => LocalDataSourceImpl(appPrefs: instance()));
 // Network Info instance
 // No need for adding InternetConnectionChecker cause it is singleton by default
-  instance.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionChecker()));
+  instance.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfoImpl(InternetConnectionChecker()));
 
   // Repository Instance
   instance.registerLazySingleton<Repository>(
     () => RepositoryImpl(
+      localDataSource: instance(),
       remoteDataSource: instance(),
       networkInfo: instance(),
     ),

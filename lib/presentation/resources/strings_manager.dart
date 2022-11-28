@@ -59,11 +59,15 @@ class AppStrings {
   static const productDescription = 'Product Description';
   static const errorHappened = 'An error happened';
   static const noInternetTitle = 'No internet connection ';
-  static const noInternetMessage = 'Check your internet connection and try again';
+  static const noInternetMessage =
+      'Check your internet connection and try again';
   static const tryAgain = 'Try Again';
   static const whatDoYouWantToBuy = 'What do you want to buy today';
   static const categories = 'Categories';
   static const addProduct = 'Add Product';
 
   static const addCategory = 'Add Category';
+  static const pickFromGallery = 'Pick from Gallery';
+  static const pickFromCamera = 'Pick from Camera';
+  static const save = 'save';
 }

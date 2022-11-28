@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yomo_ecommerce/presentation/blocs/manage_category/bloc/manage_category_bloc.dart';
+import 'package:yomo_ecommerce/presentation/blocs/validation/add_edit_category_bloc/bloc/add_edit_category_bloc.dart';
+import 'package:yomo_ecommerce/presentation/blocs/validation/login/login_bloc.dart';
+import 'package:yomo_ecommerce/presentation/blocs/validation/signup/signup_bloc.dart';
 import 'package:yomo_ecommerce/presentation/resources/strings_manager.dart';
 import 'package:yomo_ecommerce/presentation/views/add_category/add_category.dart';
 import 'package:yomo_ecommerce/presentation/views/add_product/add_product.dart';
+import 'package:yomo_ecommerce/presentation/views/auth/login/login_view.dart';
+import 'package:yomo_ecommerce/presentation/views/auth/signup/signup_view.dart';
 import 'package:yomo_ecommerce/presentation/views/categories/categories_view.dart';
 import 'package:yomo_ecommerce/presentation/views/home/home_view.dart';
 import 'package:yomo_ecommerce/presentation/views/orders/orders_view.dart';
@@ -34,27 +40,47 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.productsRoute:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => ProductsBloc(repository: instance())
-                    ..add(ProductStarted(categoryName: settings.arguments as String)),
-                  child: ProductsView(
-                    categoryName: settings.arguments as String,
-                  ),
-                ));
+          builder: (_) => BlocProvider(
+            create: (context) => ProductsBloc(repository: instance())
+              ..add(ProductStarted(categoryName: settings.arguments as String)),
+            child: ProductsView(
+              categoryName: settings.arguments as String,
+            ),
+          ),
+        );
       case Routes.categoriesRoute:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<CategoryBloc>(
                   child: const CategoriesView(),
                   create: (BuildContext context) {
-                    return CategoryBloc(repository: instance())..add(CategoryStarted());
+                    return CategoryBloc(repository: instance())
+                      ..add(CategoryStarted());
                   },
                 ));
       case Routes.addCategoryRoute:
-        return MaterialPageRoute(builder: (_) => const AddCategoryView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider<AddEditCategoryBloc>(
+                  create: (context) => AddEditCategoryBloc(),
+                  child: const AddCategoryView(),
+                ));
       case Routes.addProductRoute:
         return MaterialPageRoute(builder: (_) => const AddProductView());
       case Routes.ordersRoute:
         return MaterialPageRoute(builder: (_) => const OrdersView());
+      case Routes.loginRoute:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => LoginBloc(),
+            child: const LoginView(),
+          ),
+        );
+      case Routes.signupRoute:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => SignupBloc(),
+            child: const SignupView(),
+          ),
+        );
       default:
         return _unKnownRoute();
     }

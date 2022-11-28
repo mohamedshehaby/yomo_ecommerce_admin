@@ -33,8 +33,9 @@ class CategoriesView extends StatelessWidget {
                   return SizedBox(
                     height: AppSize.s50,
                     child: GestureDetector(
-                      onTap: () => Navigator.of(context)
-                          .pushNamed(Routes.productsRoute, arguments: categories[i].name),
+                      onTap: () => Navigator.of(context).pushNamed(
+                          Routes.productsRoute,
+                          arguments: categories[i].name),
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(AppPadding.p8),
